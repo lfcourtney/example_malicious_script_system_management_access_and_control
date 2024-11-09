@@ -16,9 +16,9 @@ function sendLoggedInput(loggedInput) {
   // Send JSON data
   xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
-  xhr.onreadystatechange = function () {
+  xhr.onload = function () {
     // Request finished
-    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+    if (xhr.status >= 200 && xhr.status < 300) {
       const response = JSON.parse(xhr.responseText);
       console.log('Response:', response);
     }
